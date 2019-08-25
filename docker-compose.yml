@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  webfront:
+    build:
+      context: projects/web-frontend
+      dockerfile: Dockerfile
+    container_name: hoge-webfrontend
+    ports:
+      - 80:80
+    volumes:
+      - ./volumes/log:/var/log/nginx

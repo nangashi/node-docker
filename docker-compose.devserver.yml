@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  devserver:
+    build:
+      context: projects/web-frontend
+      dockerfile: Dockerfile.dev
+    image: hoge-devserver
+    container_name: hoge-devserver
+    command: npm run serve
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - 8080:8080
+    volumes:
+      - ./projects/web-frontend:/app

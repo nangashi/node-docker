@@ -1,0 +1,21 @@
+- name: copy image
+  copy:
+    src: "files/images/{{ docker_image }}.tar.bz2"
+    dest: "{{ docker.home }}/images/{{ docker_image }}.tar.bz2"
+  register: _copy_result
+
+- name: Load docker images
+  block:
+    - name: load latest image
+      docker_image:
+        name: "{{ docker_image }}:latest"
+        state: present
+        source: load
+        load_path: "{{ docker.home }}/images/{{ docker_image }}.tar.bz2"
+    - name: tagging current date
+      docker_image:
+        name: "{{ docker_image }}:latest"
+        repository: "{{ docker_image }}:{{ lookup('file', 'files/images/tag') }}"
+        state: present
+        source: local
+  when: _copy_result.changed

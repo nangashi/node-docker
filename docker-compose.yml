@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+  web:
+    image: system1-web
+    container_name: system1-web-container
+    ports:
+      - 80:80
+    volumes:
+      - ./volumes/web/log:/var/log/nginx
+  web_api:
+    image: system1-web_api
+    container_name: system1-web_api-container
+    environment:
+      - REDIS_HOST
+    ports:
+      - 3000:3000
+    volumes:
+      - ./volumes/web-api/log:/var/log/express
+    # networks:
+    #   - default
+    #   - common_network
+  batch:
+    image: system1-batch
+    container_name: system1-batch-container
+  redis:
+    image: system1-redis
+    container_name: system1-redis-container
+    ports:
+      - 6379:6379
+    volumes:
+      - ./volumes/redis/data:/data
+      - ./volumes/redis/log:/var/log/redis:z
+  # mysql:
+  #   image: system1-mysql
+  #   container_name: system1-mysql-container
+  #   environment:
+  #     MYSQL_DATABASE: db
+  #     MYSQL_USER: user
+  #     MYSQL_PASSWORD: password
+  #     MYSQL_ROOT_PASSWORD: rootpassword
+  #   ports:
+  #     - 3306:3306
+  #   volumes:
+  #   #   - ./volumes/mysql/initdb.d:/docker-entrypoint-initdb.d
+  #   #   - ./volumes/mysql/conf.d:/etc/mysql/conf.d
+  #     - ./volumes/mysql/log:/var/log/mysql
+# networks:
+#   common_network:
+#     external: true

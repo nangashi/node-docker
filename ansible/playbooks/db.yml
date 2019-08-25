@@ -1,0 +1,50 @@
+- hosts: web
+  tasks:
+    # - name: initialize OS
+    #   block:
+    #     - name: ユーザ作成
+    #       include_role:
+    #         name: os/user
+    #       loop: "{{ users }}"
+    #       vars:
+    #         user: "{{ item }}"
+    #   tags: init_os
+
+    # - name: setup OS
+    #   block:
+    #     - name: SELinuxの無効化
+    #       include_role:
+    #         name: os/selinux
+    #       vars:
+    #         selinux:
+    #           enabled: false
+    #     - name: firewallの無効化
+    #       systemd:
+    #         name: firewalld
+    #         state: stopped
+    #         enabled: false
+    #   tags: setup_os
+
+    # - name: setup services
+    #   block:
+    #     - name: httpd
+    #       include_role:
+    #         name: service/httpd
+    #       # vars:
+    #         # httpd:
+
+    #     - name: Tomcat
+    #       include_role:
+    #         name: service/tomcat
+    #       vars:
+    #         tomcat:
+    #           access_log: true
+    #           jre_version: 11
+    #   tags: service
+
+    # - name: install app
+    #   block:
+    #     - name: war
+    #       include_role:
+    #         name: app/web
+    #   tags: app

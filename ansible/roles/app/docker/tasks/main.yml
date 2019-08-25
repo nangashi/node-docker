@@ -1,0 +1,21 @@
+# - name: create network
+#   docker_network:
+#     name: common_network
+#     driver: bridge
+#     state: present
+
+- name: create image directory
+  file:
+    path: "{{ docker.home }}/images"
+    state: directory
+
+- name: copy images
+  include_tasks: copy_image.yml
+  vars:
+    docker_image: "{{ system.name }}-{{ item }}"
+  loop: "{{ docker.images.service | default([]) + docker.images.batch | default([]) }}"
+
+- name: docker-compose
+  template:
+    src: docker-compose.yml
+    dest: "{{ docker.home }}"

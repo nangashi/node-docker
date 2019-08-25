@@ -1,0 +1,14 @@
+# --- parameter
+# selinux:
+#   enabled: true
+#   policy: targeted
+
+- name: 設定
+  selinux:
+    state: "{{ 'enforcing' if selinux.enabled else 'disabled' }}"
+    policy: "{{ selinux.policy }}"
+  register: _result
+
+- name: 再起動
+  reboot:
+  when: _result.reboot_required

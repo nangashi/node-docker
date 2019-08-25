@@ -1,0 +1,23 @@
+- hosts: web
+  tasks:
+    - name: os settings
+      include_role:
+        name: os/common
+      vars:
+        tasks:
+          - create_users
+          - disable_selinux
+          - persist_journald
+          - sysctl_network_tuning
+
+    - name: install Docker
+      include_role:
+        name: service/docker
+    - name: Install Docker Images
+      include_role:
+        name: app/docker
+    - name: docker-compose up
+      docker_compose:
+        project_src: "{{ docker.home }}"
+        state: present
+        services: "{{ docker.images.service }}"

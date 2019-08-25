@@ -1,0 +1,6 @@
+- name: parameters
+  set_fact:
+    journald: "{{ os_common.persist_journald | default({}) | combine({ 'storage': 'persistent' })}}"
+- name: persist journald
+  include_role:
+    name: os/journald

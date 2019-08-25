@@ -1,0 +1,5 @@
+- name: common os tasks
+  include_tasks: "{{ task }}.yml"
+  loop: "{{ tasks }}"
+  loop_control:
+    loop_var: task

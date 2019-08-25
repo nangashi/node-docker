@@ -1,0 +1,7 @@
+---
+- name: disable SELinux
+  include_role:
+    name: os/selinux
+  vars:
+    selinux:
+      disabled: false

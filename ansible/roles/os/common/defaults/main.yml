@@ -1,0 +1,19 @@
+---
+os_common:
+  create_users:
+    # - name: user
+    #   password: user
+    #   generate_ssh_key: true
+  disable_selinux:
+  persist_journald:
+    system_max_use: 1G
+    system_keep_free: 1G
+  sysctl_network_tuning:
+    # こちらからの接続を再利用する
+    net.ipv4.tcp_tw_reuse: 1
+    # TIME_WAITのタイムアウト時間
+    net.ipv4.tcp_fin_timeout: 30
+    # 送信時に使用するポート範囲
+    net.ipv4.ip_local_port_range: 10000 60999
+    # 通信アイドル時に輻輳ウィンドウサイズのリセットを行わない
+    net.ipv4.tcp_slow_start_after_idle: 0

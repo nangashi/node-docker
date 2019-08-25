@@ -1,0 +1,9 @@
+---
+- name: create users and groups
+  include_role:
+    name: os/user
+  vars:
+    user: "{{ create_user }}"
+  loop: "{{ os_common.create_users }}"
+  loop_control:
+    loop_var: create_user

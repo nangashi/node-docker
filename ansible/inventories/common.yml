@@ -1,0 +1,27 @@
+all:
+  vars:
+    ansible_ssh_user: admin
+    ansible_become: true
+    ansible_become_method: su
+    ansible_become_user: root
+    system:
+      name: system1
+    os_common:
+      create_users:
+        - name: user_name
+          home: /opt/system1
+          generate_ssh_key: true
+    docker:
+      home: /opt/system1
+  children:
+    web:
+      vars:
+        docker:
+          images:
+            service:
+              - web
+              - web_api
+              - redis
+            batch:
+              - batch
+    db:

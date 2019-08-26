@@ -5,12 +5,25 @@ services:
     build:
       context: projects/web-frontend
       dockerfile: Dockerfile.dev
+      args:
+        http_proxy: $http_proxy
+        https_proxy: $https_proxy
     image: hoge-devserver
     container_name: hoge-devserver
     command: npm run serve
     environment:
       - CHOKIDAR_USEPOLLING=true
     ports:
-      - 8080:8080
+      - 80:8080
     volumes:
-      - ./projects/web-frontend:/app
+      - ./projects/web-frontend:/app:cached
+  webback:
+    build:
+      context: projects/web-backend
+      dockerfile: Dockerfile
+      args:
+        http_proxy: $http_proxy
+        https_proxy: $https_proxy
+    container_name: hoge-webbackend
+    ports:
+      - 3000:3000

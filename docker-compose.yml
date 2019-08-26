@@ -5,8 +5,21 @@ services:
     build:
       context: projects/web-frontend
       dockerfile: Dockerfile
+      args:
+        http_proxy: $http_proxy
+        https_proxy: $https_proxy
     container_name: hoge-webfrontend
     ports:
       - 80:80
     volumes:
       - ./volumes/log:/var/log/nginx
+  webback:
+    build:
+      context: projects/web-backend
+      dockerfile: Dockerfile
+      args:
+        http_proxy: $http_proxy
+        https_proxy: $https_proxy
+    container_name: hoge-webbackend
+    ports:
+      - 3000:3000

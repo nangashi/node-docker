@@ -1,13 +1,22 @@
 import nodeResolve from 'rollup-plugin-node-resolve';
+import commonJs from 'rollup-plugin-commonjs';
+import json from 'rollup-plugin-json';
+
+import builtins from 'builtin-modules';
 
 export default {
-  input: 'src/js/app.js',
+  input: 'src/app.js',
   output: {
-    file: 'bundle.js',
+    name: 'web-backend',
+    file: 'dist/server.js',
     format: 'cjs',
   },
-  // external: ['express'],
+  external: builtins,
   plugins: [
-    nodeResolve(),
+    nodeResolve({
+      preferBuiltins: true,
+    }),
+    commonJs(),
+    json(),
   ]
 };

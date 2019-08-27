@@ -2,26 +2,26 @@ version: '3.7'
 
 services:
   webfront:
-    image: hoge-webfrontend
+    image: hoge_web
     build:
-      context: projects/web-frontend
+      context: containers/web
       dockerfile: Dockerfile
       args:
         http_proxy: ${http_proxy:-}
         https_proxy: ${https_proxy:-}
-    container_name: hoge-webfrontend-container
+    container_name: hoge_web_container
     ports:
       - 80:80
     volumes:
-      - ./volumes/log:/var/log/nginx
+      - ./volumes/web/log:/var/log/nginx
   webback:
-    image: hoge-webbackend
+    image: hoge_web-api
     build:
-      context: projects/web-backend
+      context: containers/web-api
       dockerfile: Dockerfile
       args:
         http_proxy: ${http_proxy:-}
         https_proxy: ${https_proxy:-}
-    container_name: hoge-webbackend-container
+    container_name: hoge_web-api_container
     ports:
       - 3000:3000

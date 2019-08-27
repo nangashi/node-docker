@@ -18,6 +18,7 @@ FROM node:12.8.1-alpine
 WORKDIR /app
 
 COPY --from=build /app/dist/server.js /app
+COPY --from=build /app/node_modules /app/node_modules
 
 EXPOSE 3000
 

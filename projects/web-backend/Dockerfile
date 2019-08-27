@@ -9,8 +9,8 @@ ENV https_proxy $https_proxy
 
 ADD . /app
 
-RUN npm ci
-RUN npx rollup -c
+RUN yarn
+RUN npx webpack
 
 
 FROM node:12.8.1-alpine

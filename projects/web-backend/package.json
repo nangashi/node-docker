@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "rollup src/js/app.js --file bundle.js --format cjs"
+    "serve": "webpack --watch"
   },
   "keywords": [],
   "author": "",
@@ -13,10 +13,17 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "builtin-modules": "^3.1.0",
-    "rollup": "^1.20.2",
-    "rollup-plugin-commonjs": "^10.0.2",
-    "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^5.2.0"
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@types/express": "^4.17.1",
+    "@types/node": "^12.7.2",
+    "babel-loader": "^8.0.6",
+    "nodemon-webpack-plugin": "^4.0.8",
+    "ts-loader": "^6.0.4",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-node-externals": "^1.7.2"
   }
 }

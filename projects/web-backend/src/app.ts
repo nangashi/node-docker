@@ -1,15 +1,14 @@
 import express from 'express';
+import { AddressInfo } from 'net';
 
 var app = express();
 
-/* 2. listen()メソッドを実行して3000番ポートで待ち受け。*/
 var server = app.listen(3000, function () {
-  console.log("Node.js is listening to PORT:" + server.address().port);
+  const { port } = server.address() as AddressInfo;
+  console.log(`Node.js is listening at port ${port}`);
 });
 
-/* 3. 以後、アプリケーション固有の処理 */
-
-// 写真のサンプルデータ
+// サンプルデータ
 var photoList = [
   {
     id: "001",
@@ -24,7 +23,6 @@ var photoList = [
   }
 ]
 
-// 写真リストを取得するAPI
 app.get("/api", function (req, res, next) {
   res.json(photoList);
 });

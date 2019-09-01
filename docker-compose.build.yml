@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  web:
+    build:
+      context: containers/web
+      dockerfile: Dockerfile
+      args:
+        http_proxy: ${http_proxy:-}
+        https_proxy: ${https_proxy:-}
+  web_api:
+    build:
+      context: containers/web-api
+      dockerfile: Dockerfile
+      args:
+        http_proxy: ${http_proxy:-}
+        https_proxy: ${https_proxy:-}
+  redis:
+    build:
+      context: containers/redis
+      dockerfile: Dockerfile

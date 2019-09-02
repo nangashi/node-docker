@@ -41,3 +41,14 @@ if [ "$(pwd | cut -c -7)" == "/mnt/c/" ]; then
   cd "$(pwd | cut -c 5-)"
 fi
 ```
+
+## nvm
+
+nvmをインストール。  
+https://github.com/nvm-sh/nvm
+
+```sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+nvm install stable
+nvm use stable
+```

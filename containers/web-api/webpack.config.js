@@ -14,6 +14,12 @@ module.exports = {
     filename: 'server.js',
   },
   externals: [nodeExternals()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+    extensions: ['.ts'],
+  },
   module: {
     rules: [
       {

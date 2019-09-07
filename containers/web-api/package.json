@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build:prod": "webpack --env.mode=production",
+    "serve:prod": "webpack --watch --env.mode=production",
     "serve": "webpack --watch"
   },
   "keywords": [],
@@ -12,7 +14,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-promise-router": "^3.0.3",
-    "ioredis": "^4.14.0"
+    "ioredis": "^4.14.0",
+    "log4js": "^5.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

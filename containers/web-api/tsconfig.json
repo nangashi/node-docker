@@ -11,6 +11,9 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "config": [
+        "src/config/development.ts"
       ]
     },
     // "allowJs": true,                       /* Allow javascript files to be compiled. */

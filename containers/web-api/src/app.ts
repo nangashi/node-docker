@@ -2,12 +2,12 @@ import express from 'express';
 import { AddressInfo } from 'net';
 
 import sample from '@/routers/sample';
+import logger from '@/loggers';
 
 const app = express();
+app.use(sample);
 
 const server = app.listen(3000, function () {
   const { port } = server.address() as AddressInfo;
-  console.log(`Node.js is listening port ${port}`);
+  logger.info(`Express is listening port ${port}.`);
 });
-
-app.use(sample);

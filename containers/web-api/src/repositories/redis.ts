@@ -1,6 +1,8 @@
 import Redis from 'ioredis';
 
-const redis = new Redis();
+import config from 'config';
+
+const redis = new Redis(config.redis);
 
 // set sample data
 redis.set('key', 'value');

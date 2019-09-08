@@ -13,6 +13,11 @@ services:
     container_name: hoge_web-api_container
     ports:
       - 3000:3000
+    volumes:
+      - ./volumes/web_api/log:/var/log/express
+    networks:
+      - default
+      - common_network
   redis:
     image: hoge_redis
     container_name: hoge_redis_container
@@ -21,3 +26,6 @@ services:
     volumes:
       - ./volumes/redis/data:/data
       - ./volumes/redis/log:/var/log/redis
+networks:
+  common_network:
+    external: true

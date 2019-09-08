@@ -7,7 +7,7 @@ const dist = path.resolve(__dirname, 'dist/');
 
 module.exports = env => {
   const mode = (env && env.mode) ? env.mode : 'development';
-console.log('mode', env);
+
   return {
     mode: mode,
     entry: './src/app.ts',

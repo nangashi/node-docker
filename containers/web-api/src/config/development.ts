@@ -1,10 +1,13 @@
-export default {
-  log4js: {
+/* eslint @typescript-eslint/no-explicit-any: 0 */
+import config from '@/config/production';
+
+config.redis.host = 'localhost';
+config.log4js = {
     appenders: {
       console: {
         type: 'console',
       },
-    },
+    } as any,
     categories: {
       'default': {
         appenders: [
@@ -13,5 +16,6 @@ export default {
         level: 'debug',
       },
     },
-  },
-};
+  };
+
+export default config;

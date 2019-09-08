@@ -2,7 +2,8 @@ import express from 'express';
 import { AddressInfo } from 'net';
 
 import sample from '@/routers/sample';
-import logger from '@/loggers';
+import logger from '@/logger';
+
 
 const app = express();
 app.use(sample);

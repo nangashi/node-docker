@@ -11,7 +11,7 @@ ADD package.json yarn.lock /app/
 RUN yarn
 
 ADD . /app
-RUN npx webpack
+RUN yarn build:prod
 
 
 FROM node:12.8.1-alpine
@@ -20,7 +20,10 @@ WORKDIR /app
 
 COPY --from=build /app/dist/server.js /app
 COPY --from=build /app/node_modules /app/node_modules
+RUN mkdir /var/log/express
 
 EXPOSE 3000
+
+VOLUME [ "/var/log/express" ]
 
 CMD [ "node", "/app/server.js" ]

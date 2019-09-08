@@ -18,6 +18,8 @@ FROM node:12.8.1-alpine
 
 WORKDIR /app
 
+ENV REDIS_HOST $REDIS_HOST
+
 COPY --from=build /app/dist/server.js /app
 COPY --from=build /app/node_modules /app/node_modules
 RUN mkdir /var/log/express

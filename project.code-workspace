@@ -5,10 +5,13 @@
 		},
 		{
 			"path": "containers\\web"
-		}
+		},
 		{
 			"path": "containers\\web-api"
 		},
-	],
+    {
+      "path": "containers\\redis"
+    },
+  ],
 	"settings": {}
 }

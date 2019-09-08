@@ -11,6 +11,8 @@ services:
   web_api:
     image: hoge_web-api
     container_name: hoge_web-api_container
+    environment:
+      - REDIS_HOST
     ports:
       - 3000:3000
     volumes:

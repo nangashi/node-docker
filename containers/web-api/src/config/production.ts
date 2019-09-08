@@ -1,6 +1,6 @@
 export default {
   redis: {
-    host: 'redis',
+    host: process.env.REDIS_HOST,
     connectTimeout: 2000,
     lazyConnect: true,
     maxRetriesPerRequest: 1,

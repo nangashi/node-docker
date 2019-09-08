@@ -1,0 +1,79 @@
+- name: check that packages are prepared.
+  block:
+    - name: rpm packages.
+      local_action:
+        module: find
+        paths: "{{ role_path }}/files/rpms"
+        patterns: "docker-ce-*.rpm"
+      register: _find_rpm_result
+    - name: pip packages.
+      local_action:
+        module: find
+        paths: "{{ role_path }}/files/pips"
+        patterns: "docker_compose-*.whl"
+      register: _find_pip_result
+  vars:
+    ansible_become: false
+
+- name: notify how to prepare packages.
+  fail:
+    msg: |
+      Please download and place required packages to files directory.
+
+      == HOW TO DOWNLOAD ==
+      # yum -y install yum-utils epel-release
+      # yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+      # yumdownloader docker-ce python2-pip device-mapper-persistent-data lvm2
+      ==> copy ./*.rpm files to "files/rpms" directory.
+
+      And pip files is also required.
+
+      == HOW TO DOWNLOAD ==
+      # pip download -d src docker-compose
+      ==> copy src/* files to "files/pips" directory.
+  when: _find_rpm_result.matched == 0 or _find_pip_result.matched == 0
+
+
+# === install docker ===
+
+- name: create rpm package directory.
+  file:
+    state: directory
+    path: /tmp/ansible/docker/rpms
+
+- name: transfer rpm packages.
+  copy:
+    src: "{{ item }}"
+    dest: /tmp/ansible/docker/rpms
+  register: _copy_rpm_result
+  with_fileglob: files/rpms/*.rpm
+
+- name: install docker.
+  yum:
+    name: "{{ _copy_rpm_result.results | map(attribute='dest') | list }}"
+    state: present
+
+- name: set docker auto start.
+  systemd:
+    name: docker
+    enabled: true
+    state: started
+
+
+# === install docker-compose
+
+- name: create pip package directory.
+  file:
+    state: directory
+    path: /tmp/ansible/docker/pips
+
+- name: transfer pip packages.
+  copy:
+    src: "{{ item }}"
+    dest: /tmp/ansible/docker/pips
+  register: _copy_pip_result
+  with_fileglob: files/pips/*
+
+- name: install docker-compose.
+  pip:
+    name: "{{ _copy_pip_result.results | selectattr('dest', 'search', '/docker_compose-') | map(attribute='dest') | list }}"

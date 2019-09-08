@@ -4,14 +4,17 @@
 			"path": "."
 		},
 		{
-			"path": "containers\\web"
+			"path": "containers/web"
 		},
 		{
-			"path": "containers\\web-api"
+			"path": "containers/web-api"
 		},
-    {
-      "path": "containers\\redis"
-    },
-  ],
+		{
+			"path": "containers/redis"
+		},
+		{
+			"path": "ansible"
+		},
+	],
 	"settings": {}
 }

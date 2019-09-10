@@ -2,7 +2,7 @@
 import log4js from 'log4js';
 
 import config from 'config';
-console.log(JSON.stringify(config));
+
 log4js.configure(config.log4js);
 
 // replace console log

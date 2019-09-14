@@ -1,21 +1,28 @@
 - hosts: web
   tasks:
-    - name: d
-      debug:
-        msg: "user: {{ users }}"
-    - name: os settings
-      include_role:
-        name: os/common
-      vars:
-        tasks:
-          - name: create_user
-            vars: "{{ users }}"
-          - name: disable_selinux
-    - name: install Docker
-      include_role:
-        name: service/docker
+    # - name: os settings
+    #   include_role:
+    #     name: os/common
+    #   vars:
+    #     tasks:
+    #       - name: create_user
+    #         vars: "{{ users }}"
+    #       - name: disable_selinux
+    # - name: install Docker
+    #   include_role:
+    #     name: service/docker
 
-
+    - name: Install Docker Images
+      include_role:
+        name: app/docker
+    - name: docker-compose up
+      docker_compose:
+      # project_name: fuga
+        project_src: "{{ system.root_dir }}"
+        state: present
+        services:
+          - redis
+          - web_api
 
     # - name: initialize OS
     #   block:

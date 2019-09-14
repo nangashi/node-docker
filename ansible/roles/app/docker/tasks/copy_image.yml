@@ -1,0 +1,13 @@
+- name: copy image
+  copy:
+    src: "files/images/{{ docker_image }}.tar"
+    dest: "{{ system.root_dir}}/images/{{ docker_image }}.tar"
+  register: _copy_result
+
+- name: Load docker images
+  docker_image:
+    name: "{{ docker_image }}:{{ lookup('file', 'files/images/tag') }}"
+    state: present
+    source: load
+    load_path: "{{ system.root_dir}}/images/{{ docker_image }}.tar"
+  when: _copy_result.changed

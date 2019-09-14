@@ -5,7 +5,8 @@ all:
     ansible_become_method: su
     ansible_become_user: root
     system:
-      name: test-system
+      name: portal
+      root_dir: "/opt/portal"
     users:
       - name: test
         password: test01
@@ -13,12 +14,16 @@ all:
     docker:
       user: root
       group: root
-      root_dir: /opt/docker
   children:
     web:
       hosts:
         web01:
           ansible_host: 192.168.0.13
+      vars:
+        docker:
+          images:
+            - "{{ system.name }}_web-api"
+            - "{{ system.name }}_redis"
     db:
       hosts:
         db01:

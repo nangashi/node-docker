@@ -2,15 +2,15 @@ version: '3.7'
 
 services:
   web:
-    image: hoge_web
-    container_name: hoge_web_container
+    image: portal_web
+    container_name: portal_web_container
     ports:
       - 80:80
     volumes:
       - ./volumes/web/log:/var/log/nginx
   web_api:
-    image: hoge_web-api
-    container_name: hoge_web-api_container
+    image: portal_web-api
+    container_name: portal_web-api_container
     environment:
       - REDIS_HOST
     ports:
@@ -21,8 +21,8 @@ services:
       - default
       - common_network
   redis:
-    image: hoge_redis
-    container_name: hoge_redis_container
+    image: portal_redis
+    container_name: portal_redis_container
     ports:
       - 6379:6379
     volumes:

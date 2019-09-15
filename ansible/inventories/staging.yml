@@ -1,29 +1,9 @@
 all:
-  vars:
-    ansible_ssh_user: admin
-    ansible_become: true
-    ansible_become_method: su
-    ansible_become_user: root
-    system:
-      name: portal
-      root_dir: "/opt/portal"
-    users:
-      - name: test
-        password: test01
-        generate_ssh_key: true
-    docker:
-      user: root
-      group: root
   children:
     web:
       hosts:
         web01:
           ansible_host: 192.168.0.13
-      vars:
-        docker:
-          images:
-            - "{{ system.name }}_web-api"
-            - "{{ system.name }}_redis"
     db:
       hosts:
         db01:

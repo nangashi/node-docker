@@ -1,5 +1,5 @@
 - name: common os tasks
   include_tasks: "{{ item.name }}.yml"
   vars:
-    os_task_params: "{{ item.vars | default(omit) }}"
+    params: "{{ item.vars | default(omit) }}"
   loop: "{{ tasks }}"

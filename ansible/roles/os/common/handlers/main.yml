@@ -1,2 +1,2 @@
-- name: reboot_os
+- name: reboot os
   reboot:

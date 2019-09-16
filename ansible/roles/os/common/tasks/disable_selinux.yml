@@ -1,11 +1,7 @@
-# --- parameter
-#
-
+---
 - name: disable SELinux
-  selinux:
-    state: disabled
-  register: result
-
-- name: reboot OS
-  reboot:
-  when: result.reboot_required
+  include_role:
+    name: os/selinux
+  vars:
+    selinux:
+      disabled: false

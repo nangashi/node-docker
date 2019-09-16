@@ -1,0 +1,25 @@
+---
+# user:
+#   # user name (required)
+#   name:
+#   # user id
+#   uid:
+#   # password
+#   # if no password is specified, user shell value is set to /sbin/nologin.
+#   password:
+#   # when to update password
+#   update_password: on_create
+#   # group name
+#   group:
+#   # group id
+#   gid:
+#   # user secondary groups
+#   groups:
+#   # user home directory
+#   home:
+#   # user shell
+#   shell:
+#   # generate ssh key
+#   generate_ssh_key: false
+#   # ssh key passphrase
+#   ssh_key_passphrase:

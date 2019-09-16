@@ -1,0 +1,6 @@
+- name: persist journald
+  include_role:
+    name: os/journald
+  vars:
+    journald:
+      storage: persistent

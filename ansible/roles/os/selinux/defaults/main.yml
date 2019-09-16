@@ -1,0 +1,6 @@
+---
+selinux:
+  # SELinux enabled
+  enabled: false
+  # policy
+  policy: targeted

@@ -11,6 +11,9 @@ all:
       - name: test
         password: test01
         generate_ssh_key: true
+    journald:
+      system_max_use: 1G
+      system_keep_free: 1G
     docker:
       user: root
       group: root

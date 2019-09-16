@@ -1,17 +1,4 @@
-# --- parameter
-# user:
-#   name:
-#   uid:
-#   password:
-#   update_password: on_create
-#   group:
-#   gid:
-#   groups:
-#   home:
-#   shell:
-#   generate_ssh_key: false
-#   ssh_key_passphrase:
-
+---
 - name: create users and groups
   block:
     - name: create group
@@ -21,7 +8,7 @@
             name: "{{ user.group }}"
             gid: "{{ user.gid | default(omit) }}"
           when: user.group is defined
-        - name: create secondary group
+        - name: create secondary groups
           group:
             name: "{{ group }}"
           when: user.groups is defined

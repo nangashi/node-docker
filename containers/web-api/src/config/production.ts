@@ -8,15 +8,17 @@ export default {
   log4js: {
     appenders: {
       file: {
-        type: 'file',
-        filename: '/var/log/express/application.log',
+        type: 'dateFile',
+        filename: '/var/log/express/app.log',
+        pattern: '-yyyyMMddhh',
+        compress: true,
       },
       console: {
         type: 'console',
       },
     },
     categories: {
-      'default': {
+      default: {
         appenders: [
           'file',
           'console',

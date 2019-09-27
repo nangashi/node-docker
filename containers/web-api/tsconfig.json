@@ -13,7 +13,7 @@
         "src/*"
       ],
       "config": [
-        "src/config/development.ts"
+        "src/config/env/production.ts"
       ]
     },
     // "allowJs": true,                       /* Allow javascript files to be compiled. */

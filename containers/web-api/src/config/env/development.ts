@@ -1,5 +1,5 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
-import config from '@/config/production';
+import config from '@/config/env/production';
 
 config.redis.host = 'localhost';
 config.log4js = {

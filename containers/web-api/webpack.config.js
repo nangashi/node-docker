@@ -20,7 +20,7 @@ module.exports = env => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
-        config$: path.resolve(__dirname, `src/config/${mode}`),
+        config$: path.resolve(__dirname, `src/config/env/${mode}`),
       },
       extensions: ['.ts'],
     },

@@ -1,0 +1,8 @@
+---
+- name: Download rpm file.
+  local_action:
+    module: get_url
+    url: "https://rpm.nodesource.com/pub_{{ nodejs.version | regex_replace('\\..*', '') }}.x/el/7/x86_64/nodejs-{{ nodejs.version }}-1nodesource.x86_64.rpm"
+    dest: "{{ role_path }}/files/rpms"
+  vars:
+    ansible_become: false

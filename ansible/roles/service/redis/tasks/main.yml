@@ -1,0 +1,6 @@
+- name: Preparation.
+  import_tasks: prepare.yml
+  tags: [ never, prepare ]
+
+- name: Install.
+  include_tasks: install.yml

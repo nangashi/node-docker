@@ -1,0 +1,7 @@
+- name: setup ntp
+  include_role:
+    name: os/chrony
+  vars:
+    chrony:
+      servers: "{{ os_common.ntp_servers }}"
+  when: os_common.ntp_servers is defined and os_common.ntp_servers|length > 0

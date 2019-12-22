@@ -14,6 +14,7 @@ os_common:
     # TIME_WAITのタイムアウト時間
     net.ipv4.tcp_fin_timeout: 30
     # 送信時に使用するポート範囲
-    net.ipv4.ip_local_port_range: 10000 60999
+    net.ipv4.ip_local_port_range: 10240 65535
     # 通信アイドル時に輻輳ウィンドウサイズのリセットを行わない
     net.ipv4.tcp_slow_start_after_idle: 0
+  ntp_servers: []

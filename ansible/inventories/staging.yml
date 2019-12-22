@@ -1,10 +1,18 @@
 all:
+  vars:
+    os_common:
+      create_users:
+        - name: user_name
+          home: /opt/system1
+          generate_ssh_key: true
+      ntp_servers:
+        - 0.centos.pool.ntp.org
   children:
     web:
       hosts:
         web01:
-          ansible_host: 192.168.0.13
+          ansible_host: 192.168.0.14
     db:
       hosts:
         db01:
-          ansible_host: 192.168.0.13
+          ansible_host: 192.168.0.14

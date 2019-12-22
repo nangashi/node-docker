@@ -1,0 +1,13 @@
+---
+- name: Put NTP config file.
+  template:
+    src: chrony.conf
+    dest: /etc/chrony.conf
+    backup: true
+  register: _result
+
+- name: Restart chronyd.
+  service:
+    name: chronyd
+    state: restarted
+  when: _result.changed

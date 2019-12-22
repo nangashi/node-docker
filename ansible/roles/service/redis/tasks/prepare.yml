@@ -1,0 +1,34 @@
+---
+- name: Register remi repository.
+  yum:
+    name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+
+- name: Create download directory.
+  file:
+    path: /tmp/ansible/yum/rpms
+    state: directory
+
+- name: Download rpm files.
+  yum:
+    name: redis
+    enablerepo: remi
+    download_only: true
+    download_dir: /tmp/ansible/yum/rpms
+
+- name: Find files to copy.
+  find:
+    path: /tmp/ansible/yum/rpms
+    patterns: "*.rpm"
+  register: _files_to_copy
+
+- name: Fetch rpm files.
+  fetch:
+    src: "{{ item.path }}"
+    dest: "{{ role_path }}/files/rpms/"
+    flat: true
+  loop: "{{ _files_to_copy.files }}"
+
+- name: Delete download directory.
+  file:
+    path: /tmp/ansible/yum/rpms
+    state: absent

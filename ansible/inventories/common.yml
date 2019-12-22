@@ -6,11 +6,6 @@ all:
     ansible_become_user: root
     system:
       name: system1
-    os_common:
-      create_users:
-        - name: user_name
-          home: /opt/system1
-          generate_ssh_key: true
     docker:
       home: /opt/system1
   children:
